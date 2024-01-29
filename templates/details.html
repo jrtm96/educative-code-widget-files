@@ -1,18 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>Details about {{ pet["name"] }}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-</head>
-<body>
-    <h1 id="title"><center>Details about {{ pet["name"] }} 🐾</center></h1>
-<div>   
-    <img src= "{{url_for('static', filename = pet["id"]|string+".jpg")}}" >
-</div>
-  <h1>{{ pet['name'] }}</h1>
-  <p>Age: {{ pet['age'] }}</p>
-  <p>Bio: {{ pet['bio'] }}</p>
-  <!-- Add more details as needed -->
-</body>
-</html>
+{% extends "base.html" %}
+
+
+
+<!-- Replacement for Title -->
+{% block title %}
+Details about {{ pet["name"] }}
+{% endblock %}
+
+
+<!-- Replacement for Page Header-->
+{% block header %}
+<h1 id="title">
+    <center>Details about {{ pet["name"] }} 🐾</center>
+</h1>
+{% endblock %}
+
+
+<!-- Replacement for Page Content-->
+{% block content %}
+    <div style="float:left; border-style:double;">
+        <img src= "{{url_for('static', filename = pet["id"]|string+".jpg")}}" height="350" >
+    </div> 
+    <div style="float:left; margin:10px;">
+        <h1>{{ pet['name'] }}</h1>
+        <p>Age: {{ pet['age'] }}</p>
+        <p>Bio: {{ pet['bio'] }}</p>
+    </div>
+    <div style="clear: both;"></div> 
+{% endblock %}
